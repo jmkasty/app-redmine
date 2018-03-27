@@ -17,6 +17,7 @@
             },
             "id_user_redmine": "Id User Redmine",
             "login": "Login",
+            "token": "Token",
             "user": "User"
         }
     }

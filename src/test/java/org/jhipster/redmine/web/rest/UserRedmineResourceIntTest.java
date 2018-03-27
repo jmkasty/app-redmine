@@ -44,6 +44,9 @@ public class UserRedmineResourceIntTest {
     private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
     private static final String UPDATED_LOGIN = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TOKEN = "AAAAAAAAAA";
+    private static final String UPDATED_TOKEN = "BBBBBBBBBB";
+
     @Autowired
     private UserRedmineRepository userRedmineRepository;
 
@@ -83,7 +86,8 @@ public class UserRedmineResourceIntTest {
     public static UserRedmine createEntity(EntityManager em) {
         UserRedmine userRedmine = new UserRedmine()
             .id_user_redmine(DEFAULT_ID_USER_REDMINE)
-            .login(DEFAULT_LOGIN);
+            .login(DEFAULT_LOGIN)
+            .token(DEFAULT_TOKEN);
         return userRedmine;
     }
 
@@ -109,6 +113,7 @@ public class UserRedmineResourceIntTest {
         UserRedmine testUserRedmine = userRedmineList.get(userRedmineList.size() - 1);
         assertThat(testUserRedmine.getId_user_redmine()).isEqualTo(DEFAULT_ID_USER_REDMINE);
         assertThat(testUserRedmine.getLogin()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(testUserRedmine.getToken()).isEqualTo(DEFAULT_TOKEN);
     }
 
     @Test
@@ -142,7 +147,8 @@ public class UserRedmineResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(userRedmine.getId().intValue())))
             .andExpect(jsonPath("$.[*].id_user_redmine").value(hasItem(DEFAULT_ID_USER_REDMINE)))
-            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN.toString())));
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN.toString())))
+            .andExpect(jsonPath("$.[*].token").value(hasItem(DEFAULT_TOKEN.toString())));
     }
 
     @Test
@@ -157,7 +163,8 @@ public class UserRedmineResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(userRedmine.getId().intValue()))
             .andExpect(jsonPath("$.id_user_redmine").value(DEFAULT_ID_USER_REDMINE))
-            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN.toString()));
+            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN.toString()))
+            .andExpect(jsonPath("$.token").value(DEFAULT_TOKEN.toString()));
     }
 
     @Test
@@ -181,7 +188,8 @@ public class UserRedmineResourceIntTest {
         em.detach(updatedUserRedmine);
         updatedUserRedmine
             .id_user_redmine(UPDATED_ID_USER_REDMINE)
-            .login(UPDATED_LOGIN);
+            .login(UPDATED_LOGIN)
+            .token(UPDATED_TOKEN);
 
         restUserRedmineMockMvc.perform(put("/api/user-redmines")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -194,6 +202,7 @@ public class UserRedmineResourceIntTest {
         UserRedmine testUserRedmine = userRedmineList.get(userRedmineList.size() - 1);
         assertThat(testUserRedmine.getId_user_redmine()).isEqualTo(UPDATED_ID_USER_REDMINE);
         assertThat(testUserRedmine.getLogin()).isEqualTo(UPDATED_LOGIN);
+        assertThat(testUserRedmine.getToken()).isEqualTo(UPDATED_TOKEN);
     }
 
     @Test

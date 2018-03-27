@@ -5,9 +5,8 @@ configurations {
 }
 
 dependencies {
-    liquibase "org.liquibase.ext:liquibase-hibernate5"
+    liquibase "org.liquibase.ext:liquibase-hibernate5:3.6"
 }
-
 if (OperatingSystem.current().isWindows()) {
     task pathingLiquibaseJar(type: Jar) {
         dependsOn configurations.liquibase

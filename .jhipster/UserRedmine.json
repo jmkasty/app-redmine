@@ -18,6 +18,10 @@
         {
             "fieldName": "login",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180327075249",

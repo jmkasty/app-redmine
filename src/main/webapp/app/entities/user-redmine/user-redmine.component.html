@@ -19,6 +19,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="jhipsterApp.userRedmine.id_user_redmine">Id User Redmine</span></th>
             <th><span jhiTranslate="jhipsterApp.userRedmine.login">Login</span></th>
+            <th><span jhiTranslate="jhipsterApp.userRedmine.token">Token</span></th>
             <th><span jhiTranslate="jhipsterApp.userRedmine.user">User</span></th>
             <th></th>
             </tr>
@@ -28,6 +29,7 @@
                 <td><a [routerLink]="['../user-redmine', userRedmine.id ]">{{userRedmine.id}}</a></td>
                 <td>{{userRedmine.id_user_redmine}}</td>
                 <td>{{userRedmine.login}}</td>
+                <td>{{userRedmine.token}}</td>
                 <td>
                     {{userRedmine.user?.login}}
                 </td>

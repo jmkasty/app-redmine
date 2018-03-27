@@ -28,6 +28,9 @@ public class UserRedmine implements Serializable {
     @Column(name = "login")
     private String login;
 
+    @Column(name = "token")
+    private String token;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
@@ -65,6 +68,19 @@ public class UserRedmine implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public UserRedmine token(String token) {
+        this.token = token;
+        return this;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public User getUser() {
@@ -107,6 +123,7 @@ public class UserRedmine implements Serializable {
             "id=" + getId() +
             ", id_user_redmine=" + getId_user_redmine() +
             ", login='" + getLogin() + "'" +
+            ", token='" + getToken() + "'" +
             "}";
     }
 }
