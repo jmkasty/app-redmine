@@ -1,0 +1,62 @@
+<div>
+    <h2>
+        <span jhiTranslate="jhipsterApp.userRedmine.home.title">User Redmines</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-redmine" [routerLink]="['/', { outlets: { popup: ['user-redmine-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="jhipsterApp.userRedmine.home.createLabel">
+            Create new User Redmine
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userRedmines">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="jhipsterApp.userRedmine.id_user_redmine">Id User Redmine</span></th>
+            <th><span jhiTranslate="jhipsterApp.userRedmine.login">Login</span></th>
+            <th><span jhiTranslate="jhipsterApp.userRedmine.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userRedmine of userRedmines ;trackBy: trackId">
+                <td><a [routerLink]="['../user-redmine', userRedmine.id ]">{{userRedmine.id}}</a></td>
+                <td>{{userRedmine.id_user_redmine}}</td>
+                <td>{{userRedmine.login}}</td>
+                <td>
+                    {{userRedmine.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-redmine', userRedmine.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-redmine/'+ userRedmine.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-redmine/'+ userRedmine.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

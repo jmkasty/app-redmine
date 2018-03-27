@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userRedmine"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "id_user_redmine",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "login",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180327075249",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "user_redmine",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

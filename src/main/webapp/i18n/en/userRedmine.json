@@ -1,0 +1,23 @@
+{
+    "jhipsterApp": {
+        "userRedmine" : {
+            "home": {
+                "title": "User Redmines",
+                "createLabel": "Create a new User Redmine",
+                "createOrEditLabel": "Create or edit a User Redmine"
+            },
+            "created": "A new User Redmine is created with identifier {{ param }}",
+            "updated": "A User Redmine is updated with identifier {{ param }}",
+            "deleted": "A User Redmine is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Redmine {{ id }}?"
+            },
+            "detail": {
+                "title": "User Redmine"
+            },
+            "id_user_redmine": "Id User Redmine",
+            "login": "Login",
+            "user": "User"
+        }
+    }
+}
