@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "userRedmine",
+            "otherEntityName": "userRedmine",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180327080938",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "track",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

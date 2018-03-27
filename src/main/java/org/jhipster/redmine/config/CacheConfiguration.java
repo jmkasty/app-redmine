@@ -42,6 +42,7 @@ public class CacheConfiguration {
             cm.createCache(org.jhipster.redmine.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(org.jhipster.redmine.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(org.jhipster.redmine.domain.UserRedmine.class.getName(), jcacheConfiguration);
+            cm.createCache(org.jhipster.redmine.domain.Track.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

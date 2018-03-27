@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entities",
                 "userRedmine": "User Redmine",
+                "track": "Track",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
