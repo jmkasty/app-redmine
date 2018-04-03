@@ -1,8 +1,9 @@
 package org.jhipster.redmine.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import org.jhipster.redmine.domain.UserRedmine;
 
+import org.jhipster.redmine.domain.Track;
+import org.jhipster.redmine.domain.UserRedmine;
 import org.jhipster.redmine.repository.UserRedmineRepository;
 import org.jhipster.redmine.web.rest.errors.BadRequestAlertException;
 import org.jhipster.redmine.web.rest.util.HeaderUtil;
@@ -11,11 +12,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.taskadapter.redmineapi.RedmineManagerFactory;
+import com.taskadapter.redmineapi.RedmineManager;
+import com.taskadapter.redmineapi.bean.Issue;
+import com.taskadapter.redmineapi.bean.Project;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -29,8 +36,8 @@ public class UserRedmineResource {
 
     private static final String ENTITY_NAME = "userRedmine";
 
-    private final UserRedmineRepository userRedmineRepository;
-
+    private final UserRedmineRepository userRedmineRepository;    
+    
     public UserRedmineResource(UserRedmineRepository userRedmineRepository) {
         this.userRedmineRepository = userRedmineRepository;
     }
@@ -89,6 +96,47 @@ public class UserRedmineResource {
         return userRedmineRepository.findAll();
         }
 
+    /**
+     * GET  /user-redmines : get user redmine.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of userRedmines in body
+     */
+    @GetMapping("/user-redmines/getTimesToday/{login}")
+    @Timed
+    public ArrayList<String> getAllTracks(@PathVariable String login) throws Exception {
+    	try{
+	        log.debug("REST request to get all Tracks");
+	        UserRedmine userRedmineCurrent =  userRedmineRepository.findByLogin(login);   
+	        
+	        
+	        String uri = "https://redmine.seyte.com";
+	        String apiAccessKey = userRedmineCurrent.getToken();	        
+	
+	        ArrayList<String> obj = new ArrayList<String>();
+	        RedmineManager mgr = RedmineManagerFactory.createWithApiKey(uri, apiAccessKey);
+	        //List<Issue> issues = mgr.getIssueManager().getIssues(projectKey, queryId);
+	        List<Project> projects = mgr.getProjectManager().getProjects();
+	        for (Project project : projects) {
+	        	obj.add(project.getId() + " - " + project.getName());
+	        }
+	        Issue retrievedIssue = mgr.getIssueManager().getIssueById(19958);
+	        	obj.add("Proyecto TEST" + projects.toString() + retrievedIssue.getSubject());	
+		  	  return obj;
+	    	} catch(Exception e){
+	    		ArrayList<String> obj = new ArrayList<String>();
+	    		
+			  	  /*This is how elements should be added to the array list*/
+			  	  obj.add("Proyecto TEST1");
+			  	  obj.add("Proyecto TEST2");
+			  	  obj.add("Proyecto TEST3");
+			  	  obj.add("Proyecto TEST4");
+			  	  obj.add("Proyecto TEST5");
+			  	  obj.add("Proyecto TEST6");			  	  			  	  
+			  	  return obj;
+	        }
+        }
+
+    
     /**
      * GET  /user-redmines/:id : get the "id" userRedmine.
      *

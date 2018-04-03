@@ -13,4 +13,7 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface UserRedmineRepository extends JpaRepository<UserRedmine, Long> {
 
+	@Query("SELECT u FROM UserRedmine u WHERE u.login = ?1")
+    UserRedmine findByLogin(String login);
+	
 }

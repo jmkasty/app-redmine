@@ -42,6 +42,13 @@ export class UserRedmineService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    trackToday(login: any): Observable<UserRedmine> {
+        return this.http.get('api/user-redmines/getTimesToday/' + login).map((res: Response) => {
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
+        });
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
